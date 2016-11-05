@@ -7,6 +7,42 @@
       var pos;
       var service;
       var userRad = null;
+      
+      function initialize() {
+        var address = (document.getElementById('my-address'));
+        var autocomplete = new google.maps.places.Autocomplete(address);
+        autocomplete.setTypes(['geocode']);
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+        }
+      });
+}
+function codeAddress() {
+    geocoder = new google.maps.Geocoder();
+    var address = document.getElementById("my-address").value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+      pos = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+      makeMap(true);
+      } 
+
+      else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+google.maps.event.addDomListener(window, 'load', initialize);
 
       function createCookie(name,value,days) {
         if (days) {
@@ -33,12 +69,8 @@
         createCookie(name,"",-1);
       }
 
-      function showLocation(position) {
-      	var latitude = position.coords.latitude;
-      	var longitude = position.coords.longitude;
-      	pos = {lat: latitude, lng: longitude};
-
-      	map = new google.maps.Map(document.getElementById('map'), {
+      function makeMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
           center: pos,
           zoom: 15
         });
@@ -61,6 +93,15 @@
           //radius: userrad * 100,
           type: ['restaurant']
         }, callback);
+      }
+
+      function showLocation(position) {
+      	var latitude = position.coords.latitude;
+      	var longitude = position.coords.longitude;
+
+      	pos = {lat: latitude, lng: longitude};
+
+      	makeMap();
 
       }
 
