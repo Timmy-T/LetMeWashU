@@ -1,22 +1,24 @@
 <?php
-
     # Our API Key
     $API_KEY = "1VnhpNN1j4Ts4VZVigKj0VVRfACrn8YS8Zhoy3Yu";
     # Restaurant Name
-    $Restraurant = "Chipotle";
-    $NumOfResults = 10;
+    $NumOfResults = 1;
+    # List of nutrients
     $NutrientList   = "nutrients=205&nutrients=204&nutrients=208&nutrients=269";
-    # API Call for the USDA
-    $RestaurantSearch = "http://api.nal.usda.gov/ndb/search/?format=json&q=$Restraurant&sort=n&max=$NumOfResults&offset=0&api_key=$API_KEY";
-    # API Call for Nutrix 
-    $NutrientSearch = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=$API_KEY&$NutrientList&ndbno=";
 
-    $NutrixRestaurantSearch = "https://api.nutritionix.com/v1_1/search/$Restraurant?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_sugars%2Cnf_sodium%2Cnf_total_fat&appId=5aa1aa3d&appKey=28bbe7eaef2ea7e16caa9614014e16bf";
 
+    function foodQuery($localRestaurant){
+      queryUSDA($localRestaurant);
+    }
 
     # Gets all of the food with the given API Url
-    function queryUSDA(){   
-        global $RestaurantSearch;
+    function queryUSDA($Restaurant){  
+        global $NumOfResults;
+        global $API_KEY;
+        # API Call for the USDA
+        $RestaurantSearch = "http://api.nal.usda.gov/ndb/search/?format=json&q=$Restaurant&sort=n&max=$NumOfResults&offset=0&api_key=$API_KEY";
+   
+        
         $result = file_get_contents($RestaurantSearch);
         $json = json_decode($result);
         
@@ -26,22 +28,27 @@
             $foodID = $obj->ndbno;
             echo "<b>".$obj ->name."</b><br>";
 
-            getNutrients($foodID);
+            getUSDANutrients($foodID);
         }
-    }        
+    }      
+
     
 
     # Query and prints Nutrix data
     function queryNutrix(){
+        global $API_KEY;
+   
+        $NutrixRestaurantSearch = "https://api.nutritionix.com/v1_1/search/$Restaurant?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_sugars%2Cnf_sodium%2Cnf_total_fat&appId=5aa1aa3d&appKey=28bbe7eaef2ea7e16caa9614014e16bf";
+
         global $NutrixRestaurantSearch;
-        global $Restraurant;
+        global $Restaurant;
         $result = file_get_contents($NutrixRestaurantSearch);
         $json = json_decode($result);
         $data = $json->hits;
 
         foreach ($data as $obj) {
             $nutrient = $obj->fields;
-            if (stripWhiteSpace($nutrient->brand_name) == stripWhiteSpace($Restraurant))
+            if (stripWhiteSpace($nutrient->brand_name) == stripWhiteSpace($Restaurant))
             {
                 echo $nutrient->item_name."<br>";
                 echo "Calories:".$nutrient->nf_calories."<br>";
@@ -61,7 +68,7 @@
         global $API_KEY;
         global $NutrientList;
 
-        global $NutrientSearch;
+        $NutrientSearch = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=$API_KEY&$NutrientList&ndbno=";
 
         $foodResult = file_get_contents($NutrientSearch.$foodID);
         $foodJson = json_decode($foodResult);
@@ -87,5 +94,6 @@
         return $cleanedstr;
     }
 
-    queryUSDA();
+
+
 ?>
