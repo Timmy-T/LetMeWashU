@@ -31,47 +31,49 @@
 				<a href="#"><u>More #$@!ing options</u></a>
 			</div>
 		</div>
+		<br>
 
-		<table>
-			<td>
-				<!-- MAP ******************** -->
-		    <style>
-		      #map {
-		        height: 60%;
-		        width: 50%;
-		      }
-		    </style>		
+		<!-- MAP ******************** -->
+		<div class="mapobject">
+			<style>
+				#map {
+					height: 60%;
+					width: 42%;
 
-				<script type="text/javascript" src="map.js"></script>
-			</td>
+					margin-left: 5%;
 
-			<td>
-				<!-- MENU LIST ************** -->
-				<table class='table table-striped'>
-					<thead><tr>
-						<th>Menu Item</th>
-						<th>Calories</th>
-					</tr></thead>
-					<tbody>
-						<tr>
-							<td>ITEM 2</td>
-							<td>100 Cal</td>
-						</tr>
-						<tr>
-							<td>ITEM 3</td>
-							<td>100 Cal</td>
-						</tr>
-						<tr>
-							<td>ITEM 4</td>
-							<td>100 Cal</td>
-						</tr>
-					</tbody>
-				</table>
-			</td>
-		</table>
+					padding-top: 10px;
+				}
+			</style>
+			<script type="text/javascript" src="initMap.js"></script>
+		</div>
+
+		<!-- MENU LIST ************** -->
+		<div class="menuobject">
+			<table class='table table-striped'>
+				<thead><tr>
+					<th>Menu Item</th>
+					<th>Calories</th>
+				</tr></thead>
+				<tbody>
+					<tr>
+						<td>ITEM 2</td>
+						<td>100 Cal</td>
+					</tr>
+					<tr>
+						<td>ITEM 3</td>
+						<td>100 Cal</td>
+					</tr>
+					<tr>
+						<td>ITEM 4</td>
+						<td>100 Cal</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
 
-    <div id="map" style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px;"></div>
+    <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATHuy-4gi6lY_AuQq357emyrmiguS35fg&libraries=places,geometry&callback=initMap" async defer></script>
 	</body>
 
