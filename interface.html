@@ -39,9 +39,9 @@
 					<form>
 						<br>
 						<label>Walking Distance:</label><br>
-						<input type="radio" name="distance" id="distance" value="1" checked> Within 1 mile<br>
-						<input type="radio" name="distance" id="distance"value="5"> Within 5 miles<br>
-						<input type="radio" name="distance" id="distance"value="10"> Within 10 miles<br>
+						<input type="radio" name="distance" id="dist1" value="100"> Within 100 meters<br>
+						<input type="radio" name="distance" id="dist2" value="250"> Within 250 meters<br>
+						<input type="radio" name="distance" id="dist3" value="500" checked> Within 500 meters<br>
 						<br>
 						<!--
 						<label>Cuisine:</label><br>
@@ -51,7 +51,7 @@
 						<input type="radio" name="cuisine" value="Italian" checked> Italian<br>
 						<br>
 						-->
-						<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">NOW GO!</button></span>
+						<span class="input-group-btn"> <input class="btn" type="button" id="submitDist" type="submit" style="background-color: #000000; color: #ffffff;" name="submitDist" value="NOW GO!" onclick="initMap()" /> </span>
 					</form>
 				</div>
 			</div>

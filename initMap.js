@@ -43,14 +43,22 @@
           zoom: 15
         });
 
-        userRad = document.getElementById('distance');
+        if (document.getElementById('dist1').checked) {
+          userRad = document.getElementById('dist1').value;
+        }
+        else if (document.getElementById('dist2').checked) {
+          userRad = document.getElementById('dist2').value;
+        }
+        else {
+          userRad = document.getElementById('dist3').value;
+        }
 
         infowindow = new google.maps.InfoWindow();
         service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pos,
           radius: userRad,
-          radius: userrad * 100,
+          //radius: userrad * 100,
           type: ['restaurant']
         }, callback);
 
