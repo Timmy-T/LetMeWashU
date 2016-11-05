@@ -4,7 +4,7 @@
     # Our API Key
     $API_KEY = "1VnhpNN1j4Ts4VZVigKj0VVRfACrn8YS8Zhoy3Yu";
     # Restaurant Name
-    $NumOfResults = 1;
+    $NumOfResults = 5;
     # List of nutrients
     $NutrientList   = "nutrients=205&nutrients=204&nutrients=208&nutrients=269";
 
@@ -35,9 +35,11 @@
 
             foreach($data as $obj){
                 $foodID = $obj->ndbno;
-                echo "<b>".$obj ->name."</b><br>";
+                echo "<tr>";
+                echo "<td>".$obj ->name."</td><br>";
 
                 getUSDANutrients($foodID);
+                echo "</tr>";
             }
         }
         else{
@@ -88,7 +90,7 @@
         $foodData = $foodJson->report->foods[0]->nutrients;
 
         foreach($foodData as $piece){
-            echo $piece->nutrient.": ".$piece->value." ".$piece->unit."<br>";
+            echo "<td>".$piece->nutrient.": ".$piece->value." ".$piece->unit."</td>";
         }
     }
 
