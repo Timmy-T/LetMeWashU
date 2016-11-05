@@ -9,8 +9,8 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="interface.css">
 
@@ -24,11 +24,31 @@
 
 		<!-- LOCATION INPUT ********* -->
 		<div class="container" style="width: 75%;">
-			<div class="searchbar">
-				<input id="loc-input" class="form-control" type="text" placeholder="WHERE THE #$@! ARE YOU?"/>
+			<div class="input-group">
+				<input id="loc-input" class="form-control" type="text" style="font-size: 1.2vw;" placeholder="WHERE THE #$@! ARE YOU?">
+				<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">GO!</button></span>
 			</div>
-			<div class="container" style="width: 75%; text-align: right">
-				<a href="#"><u>More #$@!ing options</u></a>
+
+		<!-- FILTER OPTIONS ********* -->
+			<div class="dropdown" style="width: 25%; float: right;">
+				<button type="button" class="btn" data-toggle="collapse" data-target="#options" style="background-color: transparent; text-align:">More #$@!ing options <span class="caret"></span></button>
+				<div id="options" class="collapse">
+					<form method="POST" action="phpFoodQuery.php">
+						<br>
+						<label>Walking Distance:</label><br>
+						<input type="radio" name="distance" value="1" checked>Within 1 mile<br>
+						<input type="radio" name="distance" value="5">Within 5 miles<br>
+						<input type="radio" name="distance" value="10">Within 10 miles<br>
+						<br>
+						<label>Cuisine:</label><br>
+						<input type="radio" name="cuisine" value="American" checked>American<br>
+						<input type="radio" name="cuisine" value="Mexican" checked>Mexican<br>
+						<input type="radio" name="cuisine" value="Chinese" checked>Chinese<br>
+						<input type="radio" name="cuisine" value="Italian" checked>Italian<br>
+						<br>
+						<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">GO!</button></span>
+					</form>
+				</div>
 			</div>
 		</div>
 		<br>
@@ -51,21 +71,19 @@
 		<!-- MENU LIST ************** -->
 		<div class="menuobject">
 			<table class='table table-striped'>
-				<thead><tr>
-					<th>Menu Item</th>
-					<th>Calories</th>
-				</tr></thead>
+				<thead>
+					<tr style="background-color: #000000; color: #ffffff;">
+						<th>MENU ITEM</th>
+						<th>CALORIES</th>
+					</tr>
+				</thead>
 				<tbody>
 					<tr>
+						<td>ITEM 1</td>
+						<td>100 Cal</td>
+					</tr>
+					<tr>
 						<td>ITEM 2</td>
-						<td>100 Cal</td>
-					</tr>
-					<tr>
-						<td>ITEM 3</td>
-						<td>100 Cal</td>
-					</tr>
-					<tr>
-						<td>ITEM 4</td>
 						<td>100 Cal</td>
 					</tr>
 				</tbody>
