@@ -11,6 +11,16 @@ if (isset($_POST['Restaurant'])) {
     exit();
 }
 
+class foodObj{
+    public $cholestrerol;
+    public $sugar;
+    public $fat;
+    public $salt;
+    public $carbs;
+    public $energy;
+    public $name;
+}
+
 function foodQuery($localRestaurant)
 {
     queryUSDA($localRestaurant);
@@ -30,9 +40,11 @@ function queryUSDA($Restaurant)
         $data = $json->list->item;
         foreach ($data as $obj) {
             $foodID = $obj->ndbno;
-            echo $obj->name;
-            echo getUSDANutrients($foodID);
-            
+            $foodContainer =  getUSDANutrients($foodID);
+            $foodContainer->name = $obj->name;
+
+            echo "<tr><td>".$foodContainer->name."</td><td>".$foodContainer->energy."</td></tr>";
+
         }
     }
 }
@@ -48,10 +60,22 @@ function getUSDANutrients($foodID)
     $foodResult     = file_get_contents($NutrientSearch . $foodID);
     $foodJson       = json_decode($foodResult);
     $foodData       = $foodJson->report->foods[0]->nutrients;
-    
+
+    $food = new foodObj;
+
+    $food->cholesterol = $foodData[0]->value;
+    $food->sugar = $foodData[1]->value;
+    $food->fat = $foodData[2]->value;
+    $food->salt = $foodData[3]->value;
+    $food->carbs = $foodData[4]->value;
+    $food->energy = $foodData[5]->value;
+
+    return $food;
+    /*
+    echo $food ->cholesterol;
     foreach ($foodData as $piece) {
         echo "<td>" . $piece->nutrient . ": " . $piece->value . " " . $piece->unit . "</td>";
-    }
+    }*/
     
 }
 
