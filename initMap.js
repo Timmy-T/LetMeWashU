@@ -81,6 +81,14 @@
               infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                 'Distance: ' + distance.toFixed(2) + 'm <br>' +
                 place.formatted_address + '</div>');
+
+                console.log(place.name);
+                $.post("phpFoodQuery.php", {Restaurant: place.name})
+                  .done(function(data){
+                    console.log(data);
+                  });
+
+
               infowindow.open(map, this);
             });
           }
