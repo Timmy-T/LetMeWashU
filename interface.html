@@ -3,14 +3,17 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
+		<!-- Import Jquery from google's server -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="interface.css">
 
@@ -24,54 +27,67 @@
 
 		<!-- LOCATION INPUT ********* -->
 		<div class="container" style="width: 75%;">
-			<div class="searchbar">
-				<input id="loc-input" class="form-control" type="text" placeholder="WHERE THE #$@! ARE YOU?"/>
+			<div class="input-group">
+				<input id="loc-input" class="form-control" type="text" style="font-size: 1vw;" placeholder="WHERE THE #$@! ARE YOU?">
+				<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">GO!</button></span>
 			</div>
-			<div class="container" style="width: 75%; text-align: right">
-				<a href="#"><u>More #$@!ing options</u></a>
+
+		<!-- FILTER OPTIONS ********* -->
+			<div class="dropdown" style="width: 25%; float: right;">
+				<button type="button" class="btn" data-toggle="collapse" data-target="#options" style="background-color: transparent; padding: 0px;">More #$@!ing options <span class="caret"></span></button>
+				<div id="options" class="collapse" style="padding: 2px;">
+					<form>
+						<br>
+						<label>Walking Distance:</label><br>
+						<input type="radio" name="distance" id="distance" value="1" checked> Within 1 mile<br>
+						<input type="radio" name="distance" id="distance"value="5"> Within 5 miles<br>
+						<input type="radio" name="distance" id="distance"value="10"> Within 10 miles<br>
+						<br>
+						<!--
+						<label>Cuisine:</label><br>
+						<input type="radio" name="cuisine" value="American" checked> American<br>
+						<input type="radio" name="cuisine" value="Mexican" checked> Mexican<br>
+						<input type="radio" name="cuisine" value="Chinese" checked> Chinese<br>
+						<input type="radio" name="cuisine" value="Italian" checked> Italian<br>
+						<br>
+						-->
+						<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">NOW GO!</button></span>
+					</form>
+				</div>
 			</div>
 		</div>
+		<br>
 
-		<table>
-			<td>
-				<!-- MAP ******************** -->
-		    <style>
-		      #map {
-		        height: 60%;
-		        width: 50%;
-		      }
-		    </style>		
+		<!-- MAP ******************** -->
+		<div class="mapobject">
+			<style>
+				#map {
+					height: 60%;
+					width: 42%;
 
-				<script type="text/javascript" src="map.js"></script>
-			</td>
+					margin-left: 5%;
 
-			<td>
-				<!-- MENU LIST ************** -->
-				<table class='table table-striped'>
-					<thead><tr>
-						<th>Menu Item</th>
-						<th>Calories</th>
-					</tr></thead>
-					<tbody>
-						<tr>
-							<td>ITEM 2</td>
-							<td>100 Cal</td>
-						</tr>
-						<tr>
-							<td>ITEM 3</td>
-							<td>100 Cal</td>
-						</tr>
-						<tr>
-							<td>ITEM 4</td>
-							<td>100 Cal</td>
-						</tr>
-					</tbody>
-				</table>
-			</td>
-		</table>
+					padding-top: 10px;
+				}
+			</style>
+			<script type="text/javascript" src="initMap.js"></script>
+		</div>
+
+		<!-- MENU LIST ************** -->
+		<div class="menuobject">
+			<table class='table table-striped'>
+				<thead><tr style="background-color: #000000; color: #ffffff;">
+					<th>MENU ITEM</th>
+					<th>NUTRITION</th>
+				</tr></thead>
+				<tbody div id="foodList">
+					</div>
+				</tbody>
+			</table>
+		</div>
 
 
-    <div id="map" style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px;"></div>
+    <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATHuy-4gi6lY_AuQq357emyrmiguS35fg&libraries=places,geometry&callback=initMap" async defer></script>
 	</body>
 

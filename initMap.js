@@ -43,11 +43,14 @@
           zoom: 15
         });
 
+        userRad = document.getElementById('distance');
+
         infowindow = new google.maps.InfoWindow();
         service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pos,
           radius: userRad,
+          radius: userrad * 100,
           type: ['restaurant']
         }, callback);
 
@@ -106,6 +109,14 @@
               infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                 'Distance: ' + distance.toFixed(2) + 'm <br>' +
                 place.formatted_address + '</div>'); 
+
+                console.log(place.name);
+                $.post("phpFoodQuery.php", {Restaurant: place.name})
+                    console.log(data);
+                    var div = document.getElementById('foodList')
+                    div.innerHTML = data;
+                  });
+
               infowindow.open(map, this);
             });
           }
