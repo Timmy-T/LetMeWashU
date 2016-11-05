@@ -6,13 +6,38 @@
       var infowindow;
       var pos;
       var service;
+      var userRad = null;
+
+      function createCookie(name,value,days) {
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime()+(days*24*60*60*1000));
+          var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+      }
+
+      function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+      }
+
+      function eraseCookie(name) {
+        createCookie(name,"",-1);
+      }
 
       function showLocation(position) {
       	var latitude = position.coords.latitude;
       	var longitude = position.coords.longitude;
       	pos = {lat: latitude, lng: longitude};
-      	//alert("Latitude : " + latitude + " Longitude: " + longitude);
-      	//return pos;
+
       	map = new google.maps.Map(document.getElementById('map'), {
           center: pos,
           zoom: 15
@@ -22,7 +47,7 @@
         service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pos,
-          radius: 500,
+          radius: userRad,
           type: ['restaurant']
         }, callback);
 
@@ -80,22 +105,10 @@
             google.maps.event.addListener(marker, 'click', function() {
               infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                 'Distance: ' + distance.toFixed(2) + 'm <br>' +
-                place.formatted_address + '</div>');
+                place.formatted_address + '</div>'); 
               infowindow.open(map, this);
             });
           }
         });
-        /**
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                'Place ID: ' + place.place_id + '<br>' +
-                place.formatted_address + '</div>');
-          infowindow.open(map, this);
-        });
-        **/
       }
