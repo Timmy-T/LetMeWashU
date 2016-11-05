@@ -28,28 +28,30 @@
 		<!-- LOCATION INPUT ********* -->
 		<div class="container" style="width: 75%;">
 			<div class="input-group">
-				<input id="loc-input" class="form-control" type="text" style="font-size: 1.2vw;" placeholder="WHERE THE #$@! ARE YOU?">
+				<input id="loc-input" class="form-control" type="text" style="font-size: 1vw;" placeholder="WHERE THE #$@! ARE YOU?">
 				<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">GO!</button></span>
 			</div>
 
 		<!-- FILTER OPTIONS ********* -->
 			<div class="dropdown" style="width: 25%; float: right;">
-				<button type="button" class="btn" data-toggle="collapse" data-target="#options" style="background-color: transparent; text-align:">More #$@!ing options <span class="caret"></span></button>
-				<div id="options" class="collapse">
-					<form method="POST" action="phpFoodQuery.php">
+				<button type="button" class="btn" data-toggle="collapse" data-target="#options" style="background-color: transparent; padding: 0px;">More #$@!ing options <span class="caret"></span></button>
+				<div id="options" class="collapse" style="padding: 2px;">
+					<form>
 						<br>
 						<label>Walking Distance:</label><br>
-						<input type="radio" name="distance" value="1" checked>Within 1 mile<br>
-						<input type="radio" name="distance" value="5">Within 5 miles<br>
-						<input type="radio" name="distance" value="10">Within 10 miles<br>
+						<input type="radio" name="distance" id="distance" value="1" checked> Within 1 mile<br>
+						<input type="radio" name="distance" id="distance"value="5"> Within 5 miles<br>
+						<input type="radio" name="distance" id="distance"value="10"> Within 10 miles<br>
 						<br>
+						<!--
 						<label>Cuisine:</label><br>
-						<input type="radio" name="cuisine" value="American" checked>American<br>
-						<input type="radio" name="cuisine" value="Mexican" checked>Mexican<br>
-						<input type="radio" name="cuisine" value="Chinese" checked>Chinese<br>
-						<input type="radio" name="cuisine" value="Italian" checked>Italian<br>
+						<input type="radio" name="cuisine" value="American" checked> American<br>
+						<input type="radio" name="cuisine" value="Mexican" checked> Mexican<br>
+						<input type="radio" name="cuisine" value="Chinese" checked> Chinese<br>
+						<input type="radio" name="cuisine" value="Italian" checked> Italian<br>
 						<br>
-						<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">GO!</button></span>
+						-->
+						<span class="input-group-btn"><button class="btn" type="button" style="background-color: #000000; color: #ffffff;">NOW GO!</button></span>
 					</form>
 				</div>
 			</div>

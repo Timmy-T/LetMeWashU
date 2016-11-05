@@ -6,6 +6,7 @@
       var infowindow;
       var pos;
       var service;
+      var userrad = document.getElementById('distance');
 
       function showLocation(position) {
       	var latitude = position.coords.latitude;
@@ -22,7 +23,7 @@
         service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pos,
-          radius: 500,
+          radius: userrad * 100,
           type: ['restaurant']
         }, callback);
 
