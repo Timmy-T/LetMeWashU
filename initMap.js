@@ -112,7 +112,9 @@
 
                 console.log(place.name);
                 $.post("phpFoodQuery.php", {Restaurant: place.name})
+                  .done(function(data){
                     console.log(data);
+
                     var div = document.getElementById('foodList')
                     div.innerHTML = data;
                   });
