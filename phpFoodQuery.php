@@ -2,7 +2,7 @@
 # Our API Key
 $API_KEY      = "1VnhpNN1j4Ts4VZVigKj0VVRfACrn8YS8Zhoy3Yu";
 # Restaurant Name
-$NumOfResults = 2;
+$NumOfResults = 10;
 # List of nutrients
 $NutrientList = "nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=601&nutrients=307";
 if (isset($_POST['Restaurant'])) {
@@ -38,17 +38,29 @@ function queryUSDA($Restaurant)
     
     if (isset($json->list)) {
         $data = $json->list->item;
+
+        $foodStack = array();
+
         foreach ($data as $obj) {
             $foodID = $obj->ndbno;
             $foodContainer =  getUSDANutrients($foodID);
             $foodContainer->name = $obj->name;
 
-            echo "<tr><td>".$foodContainer->name."</td><td>".$foodContainer->energy."</td></tr>";
-
+            array_push($foodStack, $foodContainer);
+            #echo "<tr><td>".$foodContainer->name."</td><td>".$foodContainer->energy."</td></tr>";
         }
+
+        usort($foodStack, "cmp");
+        foreach($foodStack as $item){
+            echo "<tr><td>".$item->name."</td><td>".$item->energy."</td></tr>";
+            }
     }
 }
 
+
+function cmp($food1, $food2){
+    return $food1->energy > $food2->energy;
+}
 
 # Gets the nutrients for each individual food ID
 # Requries food ID as a parameter
