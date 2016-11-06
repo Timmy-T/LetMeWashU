@@ -197,10 +197,17 @@
 
                   var calories = (distance/1609.34) * 88.9;
 
+                  var directionsUrl = "https://www.google.com/maps/dir/" + place.name + "," + place.formatted_address;
+
                   google.maps.event.addListener(marker, 'click', function() {
                       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+<<<<<<< HEAD
                           'Distance: ' + distance.toFixed(2) + 'm <br> Calories burned walking: ' + calories.toFixed(2) + ' cal* <br>' +
                           place.formatted_address + '<br><a href="#"><b>Get Directions!</b></a></div>');
+=======
+                          'Distance: ' + distance.toFixed(2) + 'm <br> Calories burned walking*: ' + calories.toFixed(2) + ' cal <br>' +
+                          place.formatted_address + '<br><a target="_blank" href="' + directionsUrl + '"><b>Get Directions!</b></a></div>');
+>>>>>>> origin/master
 
                       console.log(place.name);
                       $.post("phpFoodQuery.php", {

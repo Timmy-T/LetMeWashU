@@ -55,6 +55,7 @@ function queryUSDA($Restaurant)
 
         usort($foodStack, "cmp");
         foreach($foodStack as $item){
+<<<<<<< HEAD
             echo "<tr class=\"fooditem\"><td><button class='btn' style='background-color: transparent;'>".$result." <span class='caret'></span></button></td><td>".$item->energy."</td></tr>";
             echo "<table>
                 <tr> <td> <t>Cholestrerol(g): </td><td>".$item->cholesterol."</td></tr>
@@ -62,6 +63,15 @@ function queryUSDA($Restaurant)
                 <tr> <td> Fat(g): </td><td>".$item->fat."</td></tr>
                 <tr> <td> Salt(mg): </td><td>".$item->salt."</td></tr>
                 <tr> <td> Carbs(g): </td><td>".$item->carbs." </td></tr></table>";
+=======
+            echo "<tr class=\"fooditem\"><td><button class='btn' style='background-color: transparent;'>".$item->name." <span class='caret'></span></button></td><td>".$item->energy."</td></tr>";
+            echo "<table>
+                <tr> <td> <t>Cholestrerol(g): </td><td>".$item->cholesterol."</td></tr>
+                <tr> <td> <t>Sugar(g): </td><td>".$item->sugar."</td></tr>
+                <tr> <td> <t>Fat(g): </td><td>".$item->fat."</td></tr>
+                <tr> <td> <t>Salt(mg): </td><td>".$item->salt."</td></tr>
+                <tr> <td> <t>Carbs(g): </td><td>".$item->carbs." </td></tr> </table>";
+>>>>>>> origin/master
             }
     }
     else{
