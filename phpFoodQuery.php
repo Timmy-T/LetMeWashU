@@ -55,6 +55,9 @@ function queryUSDA($Restaurant)
             echo "<tr><td>".$item->name."</td><td>".$item->energy."</td></tr>";
             }
     }
+    else{
+        echo "No Results For Restaurant";
+    }
 }
 
 
