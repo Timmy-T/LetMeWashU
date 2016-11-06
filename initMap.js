@@ -195,10 +195,12 @@
 
                   var distance = google.maps.geometry.spherical.computeDistanceBetween(posLoc, placeLoc);
 
+                  var calories = (distance/1609.34) * 88.9;
+
                   google.maps.event.addListener(marker, 'click', function() {
                       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                          'Distance: ' + distance.toFixed(2) + 'm <br>' +
-                          place.formatted_address + '</div>');
+                          'Distance: ' + distance.toFixed(2) + 'm <br> Calories burned walking*: ' + calories.toFixed(2) + ' cal <br>' +
+                          place.formatted_address + '<br><a href="#"><b>Get Directions!</b></a></div>');
 
                       console.log(place.name);
                       $.post("phpFoodQuery.php", {
