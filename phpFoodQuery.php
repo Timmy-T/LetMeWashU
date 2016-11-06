@@ -1,6 +1,6 @@
 <?php
 # Our API Key
-$API_KEY      = "1VnhpNN1j4Ts4VZVigKj0VVRfACrn8YS8Zhoy3Yu";
+$API_KEY      = "eo1roJnZn9Y7tLU5dd6BfvSHNr75qtqzb2Hj83tr";
 # Restaurant Name
 $NumOfResults = 10;
 # List of nutrients
@@ -75,13 +75,16 @@ function queryUSDA($Restaurant)
                 $result = substr($result,0,$pos);
             }
 
-            echo "<tr class=\"fooditem\"><td>".$result."</td><td>".$item->energy."</td></tr>";
-            echo "<table padding: 15px>
+            echo "<tr class=\"fooditem\"><td><button class='btn' style='background-color: transparent;'>".$result." <span class='caret'></span></button></td><td>".$item->energy."</td></tr>";
+            echo "<table>
                 <tr> <td> <t>Cholestrerol(g): </td><td>".$item->cholesterol."</td></tr>
-                <tr> <td> <t>Sugar(g): </td><td>".$item->sugar."</td></tr>
-                <tr> <td> <t>Fat(g): </td><td>".$item->fat."</td></tr>
-                <tr> <td> <t>Salt(mg): </td><td>".$item->salt."</td></tr>
-                <tr> <td> <t>Carbs(g): </td><td>".$item->carbs." </td></tr> </table>";
+                <tr> <td> Sugar(g): </td><td>".$item->sugar."</td></tr>
+                <tr> <td> Fat(g): </td><td>".$item->fat."</td></tr>
+                <tr> <td> Salt(mg): </td><td>".$item->salt."</td></tr>
+                <tr> <td> Carbs(g): </td><td>".$item->carbs." </td></tr></table>";
+
+            echo "<tr class=\"fooditem\"><td><button class='btn' style='background-color: transparent;'>".$item->name." <span class='caret'></span></button></td><td>".$item->energy."</td></tr>";
+            echo "<table>";
             }
     }
     else{

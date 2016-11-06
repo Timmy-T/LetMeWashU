@@ -35,7 +35,7 @@
                   map.fitBounds(place.geometry.viewport);
               } else {
                   map.setCenter(place.geometry.location);
-                  map.setZoom(17); // Why 17? Because it looks good.
+                  map.setZoom(10); // Why 17? Because it looks good.
               }
               marker.setIcon( /** @type {google.maps.Icon} */ ({
                   url: place.icon,
@@ -195,10 +195,19 @@
 
                   var distance = google.maps.geometry.spherical.computeDistanceBetween(posLoc, placeLoc);
 
+                  var calories = (distance/1609.34) * 88.9;
+
+                  var directionsUrl = "https://www.google.com/maps/dir/" + place.name + "," + place.formatted_address;
+
                   google.maps.event.addListener(marker, 'click', function() {
                       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                          'Distance: ' + distance.toFixed(2) + 'm <br>' +
-                          place.formatted_address + '</div>');
+<<<<<<< HEAD
+                          'Distance: ' + distance.toFixed(2) + 'm <br> Calories burned walking: ' + calories.toFixed(2) + ' cal* <br>' +
+                          place.formatted_address + '<br><a href="#"><b>Get Directions!</b></a></div>');
+=======
+                          'Distance: ' + distance.toFixed(2) + 'm <br> Calories burned walking*: ' + calories.toFixed(2) + ' cal <br>' +
+                          place.formatted_address + '<br><a target="_blank" href="' + directionsUrl + '"><b>Get Directions!</b></a></div>');
+>>>>>>> origin/master
 
                       console.log(place.name);
                       $.post("phpFoodQuery.php", {
