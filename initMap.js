@@ -199,7 +199,7 @@
 
                   google.maps.event.addListener(marker, 'click', function() {
                       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                          'Distance: ' + distance.toFixed(2) + 'm <br> Calories burned walking*: ' + calories.toFixed(2) + ' cal <br>' +
+                          'Distance: ' + distance.toFixed(2) + 'm <br> Calories burned walking: ' + calories.toFixed(2) + ' cal* <br>' +
                           place.formatted_address + '<br><a href="#"><b>Get Directions!</b></a></div>');
 
                       console.log(place.name);
