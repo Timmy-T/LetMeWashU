@@ -39,15 +39,18 @@ function queryUSDA($Restaurant)
     if (isset($json->list)) {
         $data = $json->list->item;
 
+        $dummy = new foodObj;
         $foodStack = array();
-
         foreach ($data as $obj) {
             $foodID = $obj->ndbno;
             $foodContainer =  getUSDANutrients($foodID);
-            $foodContainer->name = $obj->name;
 
-            array_push($foodStack, $foodContainer);
-            #echo "<tr><td>".$foodContainer->name."</td><td>".$foodContainer->energy."</td></tr>";
+            if ($dummy != $foodContainer){
+                $foodContainer->name = $obj->name;
+
+                array_push($foodStack, $foodContainer);
+                #echo "<tr><td>".$foodContainer->name."</td><td>".$foodContainer->energy."</td></tr>";
+            }
         }
 
         usort($foodStack, "cmp");
@@ -74,24 +77,22 @@ function getUSDANutrients($foodID)
     $NutrientSearch = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=$API_KEY&$NutrientList&ndbno=";
     $foodResult     = file_get_contents($NutrientSearch . $foodID);
     $foodJson       = json_decode($foodResult);
-    $foodData       = $foodJson->report->foods[0]->nutrients;
 
-    $food = new foodObj;
+    if(isset($foodJson->report->foods[0]->nutrients)){
+        $foodData = $foodJson->report->foods[0]->nutrients;
 
-    $food->cholesterol = $foodData[0]->value;
-    $food->sugar = $foodData[1]->value;
-    $food->fat = $foodData[2]->value;
-    $food->salt = $foodData[3]->value;
-    $food->carbs = $foodData[4]->value;
-    $food->energy = $foodData[5]->value;
+        $food = new foodObj;
 
-    return $food;
-    /*
-    echo $food ->cholesterol;
-    foreach ($foodData as $piece) {
-        echo "<td>" . $piece->nutrient . ": " . $piece->value . " " . $piece->unit . "</td>";
-    }*/
-    
+        $food->cholesterol = $foodData[0]->value;
+        $food->sugar = $foodData[1]->value;
+        $food->fat = $foodData[2]->value;
+        $food->salt = $foodData[3]->value;
+        $food->carbs = $foodData[4]->value;
+        $food->energy = $foodData[5]->value;
+
+        return $food;
+    }
+    return new foodObj;
 }
 
 # Query and prints Nutrix data
