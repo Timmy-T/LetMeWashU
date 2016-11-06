@@ -91,7 +91,7 @@
         service.nearbySearch({
           location: pos,
           radius: userRad,
-          //radius: userrad * 100,
+          maxPriceLevel: 1,
           type: ['restaurant']
         }, callback);
       }
