@@ -18,31 +18,31 @@
                 return;
             }
 
-        var address = '';
-        if (place.address_components) {
-            address = [
-                (place.address_components[0] && place.address_components[0].short_name || ''),
-                (place.address_components[1] && place.address_components[1].short_name || ''),
-                (place.address_components[2] && place.address_components[2].short_name || '')
-                ].join(' ');
-        }
-      });
-}
-function codeAddress() {
-    geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("my-address").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-      pos = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
-      makeMap(true);
-      } 
-
-      else {
-        alert("Geocode was not successful for the following reason: " + status);
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+            }
+        });
       }
-    });
-  }
-google.maps.event.addDomListener(window, 'load', initialize);
+
+      function codeAddress() {
+          geocoder = new google.maps.Geocoder();
+          var address = document.getElementById("my-address").value;
+          geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+            pos = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+            makeMap(true);
+            } 
+
+            else {
+              alert("Geocode was not successful for the following reason: " + status);
+            }
+          });
+      }
 
       function createCookie(name,value,days) {
         if (days) {
@@ -53,6 +53,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         else var expires = "";
         document.cookie = name+"="+value+expires+"; path=/";
       }
+
 
       function readCookie(name) {
         var nameEQ = name + "=";
@@ -96,17 +97,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
       }
 
       function showLocation(position) {
-      	var latitude = position.coords.latitude;
-      	var longitude = position.coords.longitude;
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
 
-      	pos = {lat: latitude, lng: longitude};
+        pos = {lat: latitude, lng: longitude};
 
-      	makeMap();
+        makeMap();
 
       }
 
       function errorHandler(err) {
-      	 if(err.code == 1) {
+         if(err.code == 1) {
                alert("Error: Access is denied!");
             }
             
@@ -172,5 +173,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
             });
           }
         });
+
+        document.getElementById("my-address")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        document.getElementById("addressBtn").click();
+    }
+});
 
       }
