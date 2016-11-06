@@ -105,27 +105,30 @@
       }
 
       function makeMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-              center: pos,
-              zoom: 15
-          });
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: pos,
+          zoom: 15
+        });
 
-          if (document.getElementById('dist1').checked) {
-              userRad = document.getElementById('dist1').value;
-          } else if (document.getElementById('dist2').checked) {
-              userRad = document.getElementById('dist2').value;
-          } else {
-              userRad = document.getElementById('dist3').value;
-          }
+        if (document.getElementById('dist1').checked) {
+          userRad = document.getElementById('dist1').value;
+        }
+        else if (document.getElementById('dist2').checked) {
+          userRad = document.getElementById('dist2').value;
+        }
+        else {
+          userRad = document.getElementById('dist3').value;
+        }
 
-          infowindow = new google.maps.InfoWindow();
-          service = new google.maps.places.PlacesService(map);
-          service.nearbySearch({
-              location: pos,
-              radius: userRad,
-              //radius: userrad * 100,
-              type: ['restaurant']
-          }, callback);
+        infowindow = new google.maps.InfoWindow();
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pos,
+          radius: userRad,
+          maxPriceLevel: 1,
+          type: ['restaurant']
+        }, callback);
+
       }
 
       function showLocation(position) {
