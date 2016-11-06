@@ -1,6 +1,6 @@
 [Link to application on Heroku](https://jaredschoice.herokuapp.com/interface.html)
 
-We believe that when trying to eat healthy it isn't always possible to skip eating out once in a while, be it from forgetting your lunch or just needing a break from the same boring soylent lunch everyday. This app was designed with a that in mind. Jared's Choice prompts to user for their location and returns a list of nearby restaraunts within walking distance. A user can select one of these restaraunts and be provided a list of the healthiest meal options from the restaraunt. Additionally the application provides walking directions to encourage the user to help make-up for eating out. 
+We believe that when trying to eat healthy it isn't always possible to skip eating out once in a while, be it forgetting your lunch or just needing a break from the same boring soylent lunch everyday. This app was designed with that in mind. Jared's Choice prompts the user for their location and returns a list of nearby restaraunts within walking distance. A user can select one of these restaraunts and be provided a list of the healthiest meal options from that restaraunt. Additionally, the application provides walking directions to encourage the user to help make up for eating out. 
 
 ## How to run the application:
 ### Locally:
