@@ -42,7 +42,7 @@ function codeAddress() {
       }
     });
   }
-google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', initialize);
 
       function createCookie(name,value,days) {
         if (days) {
@@ -91,7 +91,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
           location: pos,
           radius: userRad,
           //radius: userrad * 100,
-          type: ['restaurant']
+          type: ['restaurant'],
+          keyword:'fast',
+          maxprice: 1
         }, callback);
       }
 
@@ -162,8 +164,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 console.log(place.name);
                 $.post("phpFoodQuery.php", {Restaurant: place.name})
                   .done(function(data){
-                    console.log(data);
-
                     var div = document.getElementById('foodList')
                     div.innerHTML = data;
                   });
