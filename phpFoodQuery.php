@@ -46,16 +46,36 @@ function queryUSDA($Restaurant)
             $foodContainer =  getUSDANutrients($foodID);
 
             if ($dummy != $foodContainer){
+                if( $foodContainer->energy > 150){
                 $foodContainer->name = $obj->name;
 
                 array_push($foodStack, $foodContainer);
                 #echo "<tr><td>".$foodContainer->name."</td><td>".$foodContainer->energy."</td></tr>";
+                }
             }
         }
 
         usort($foodStack, "cmp");
         foreach($foodStack as $item){
-            echo "<tr class=\"fooditem\"><td>".$item->name."</td><td>".$item->energy."</td></tr>";
+
+            $upperRes = $Restaurant;
+            $itemName = $item->name;
+            $count = 1;
+            $result = str_replace(strtoupper($upperRes), "", $itemName, $count);
+
+            if (substr($result, 0,1) == ","){
+                $result = (substr($result, 1, strlen($result)));
+            }
+
+            $result = ucfirst(trim(strtolower($result)));
+            
+            $pos = strpos($result, ", upc:");
+
+            if($pos !== false){
+                $result = substr($result,0,$pos);
+            }
+
+            echo "<tr class=\"fooditem\"><td>".$result."</td><td>".$item->energy."</td></tr>";
             echo "<table padding: 15px>
                 <tr> <td> <t>Cholestrerol(g): </td><td>".$item->cholesterol."</td></tr>
                 <tr> <td> <t>Sugar(g): </td><td>".$item->sugar."</td></tr>
