@@ -77,11 +77,11 @@ function queryUSDA($Restaurant)
 
             echo "<tr class=\"fooditem\"><td><button class='btn' style='background-color: transparent;'>".$result." <span class='caret'></span></button></td><td>".$item->energy."</td></tr>";
             echo "<table>
-                <tr> <td> <t>Cholestrerol(g): </td><td>".$item->cholesterol."</td></tr>
-                <tr> <td> Sugar(g): </td><td>".$item->sugar."</td></tr>
-                <tr> <td> Fat(g): </td><td>".$item->fat."</td></tr>
-                <tr> <td> Salt(mg): </td><td>".$item->salt."</td></tr>
-                <tr> <td> Carbs(g): </td><td>".$item->carbs." </td></tr></table>";
+                <tr style='font-size: 12px;'> <td style='padding-left: 50px;'> Cholesterol (g) : </td><td>".$item->cholesterol."</td></tr>
+                <tr style='font-size: 12px;'> <td style='padding-left: 50px;'> Sugar (g) : </td><td>".$item->sugar."</td></tr>
+                <tr style='font-size: 12px;'> <td style='padding-left: 50px;'> Fat (g) : </td><td>".$item->fat."</td></tr>
+                <tr style='font-size: 12px;'> <td style='padding-left: 50px;'> Salt (mg) : </td><td>".$item->salt."</td></tr>
+                <tr style='font-size: 12px;'> <td style='padding-left: 50px;'> Carbs (g) : </td><td>".$item->carbs." </td></tr></table>";
             }
     }
     else{
