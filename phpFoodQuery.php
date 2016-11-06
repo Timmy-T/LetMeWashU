@@ -55,7 +55,7 @@ function queryUSDA($Restaurant)
 
         usort($foodStack, "cmp");
         foreach($foodStack as $item){
-            echo "<tr class=\"fooditem\"><td>".$item->name."</td><td>".$item->energy."</td></tr>";
+            echo "<tr class=\"fooditem\"><td><button class='btn' style='background-color: transparent;'>".$item->name." <span class='caret'></span></button></td><td>".$item->energy."</td></tr>";
             echo "<tr> <td>"."Cholestrerol(g): ".$item->cholesterol."<br> Sugar(g): ".$item->sugar."<br> Fat(g): ".$item->fat."<br> Salt(mg): ".$item->salt."<br> Carbs(g): ".$item->carbs." </td></tr>";
             }
     }
