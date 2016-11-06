@@ -1,6 +1,6 @@
 <?php
 # Our API Key
-$API_KEY      = "1VnhpNN1j4Ts4VZVigKj0VVRfACrn8YS8Zhoy3Yu";
+$API_KEY      = "eo1roJnZn9Y7tLU5dd6BfvSHNr75qtqzb2Hj83tr";
 # Restaurant Name
 $NumOfResults = 10;
 # List of nutrients
